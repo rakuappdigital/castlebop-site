@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Castle Bop — Grab. Fling. Defend.</title>
+<meta name="description" content="Castle Bop is a one-tap tower-defense chaos game: grab soldiers and fling them off your walls before the castle falls. Free to play on iPhone.">
+<meta property="og:title" content="Castle Bop — Grab. Fling. Defend.">
+<meta property="og:description" content="A one-tap tower-defense chaos game. Free on the App Store.">
+<meta property="og:image" content="https://castlebop.vercel.app/assets/icon.webp">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@600;700;800;900&display=swap">
+<style>
+:root{
+  --bg0:#0B0F14;--bg1:#121825;--card:#171E2B;--line:#263144;
+  --ink:#F3EBDD;--mute:#9FADC2;--gold:#FFD23F;--gold2:#FFB22E;
+  --red:#FF4D3D;--green:#3FD68A;--blue:#5AC8FF;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg0);color:var(--ink);font:600 16px/1.6 Nunito,system-ui,sans-serif;overflow-x:hidden}
+.display{font-family:"Lilita One",sans-serif;font-weight:400}
+a{color:inherit}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+.bg-glow{position:fixed;inset:0;z-index:-1;background:
+  radial-gradient(900px 500px at 15% -10%, rgba(255,210,63,.12), transparent 60%),
+  radial-gradient(900px 600px at 110% 10%, rgba(90,200,255,.10), transparent 60%),
+  linear-gradient(180deg,var(--bg0),var(--bg1) 40%,var(--bg0));
+}
+
+/* nav */
+nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0}
+.brand{display:flex;align-items:center;gap:10px;font-size:19px}
+.brand img{width:34px;height:34px;border-radius:9px;box-shadow:0 2px 10px rgba(0,0,0,.4)}
+nav .links{display:flex;gap:26px;font-size:14px;color:var(--mute)}
+nav .links a:hover{color:var(--ink)}
+@media (max-width:640px){nav .links{display:none}}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;padding:40px 0 20px}
+@media (max-width:860px){.hero{grid-template-columns:1fr;text-align:center}.hero .art{order:-1}}
+.hero h1{font-size:clamp(38px,6vw,64px);line-height:1.02;margin:10px 0 14px;color:var(--gold);text-shadow:0 4px 0 rgba(0,0,0,.35)}
+.hero p.tag{color:var(--mute);font-size:18px;max-width:46ch;margin:0 0 26px}
+@media (max-width:860px){.hero p.tag{margin-left:auto;margin-right:auto}}
+.pill{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:13px;color:var(--mute);margin-bottom:18px}
+.pill b{color:var(--green)}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap}
+@media (max-width:860px){.cta-row{justify-content:center}}
+.appstore-badge{display:inline-flex;align-items:center;gap:10px;background:#000;border:1px solid #333;border-radius:14px;padding:11px 20px;text-decoration:none;transition:transform .15s}
+.appstore-badge:hover{transform:translateY(-2px)}
+.appstore-badge svg{width:26px;height:26px;flex:none}
+.appstore-badge .t{display:flex;flex-direction:column;line-height:1.15}
+.appstore-badge .t small{font-size:11px;color:#bbb}
+.appstore-badge .t strong{font-size:19px;font-family:"Lilita One",sans-serif;font-weight:400}
+.hero .art{display:flex;justify-content:center}
+.hero .art img{width:min(78vw,340px);filter:drop-shadow(0 20px 40px rgba(0,0,0,.5))}
+
+/* screenshots */
+.showcase{padding:50px 0 10px}
+.showcase h2{text-align:center;color:var(--gold);font-size:30px;margin:0 0 8px}
+.showcase .sub{text-align:center;color:var(--mute);margin:0 0 30px}
+.shots{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 4px 20px;-webkit-overflow-scrolling:touch}
+.shots::-webkit-scrollbar{height:8px}
+.shots::-webkit-scrollbar-thumb{background:var(--line);border-radius:8px}
+.shots img{height:min(72vh,560px);width:auto;border-radius:22px;scroll-snap-align:center;flex:none;border:3px solid var(--line);box-shadow:0 16px 40px rgba(0,0,0,.45)}
+
+/* features */
+.features{padding:50px 0}
+.features h2{text-align:center;color:var(--gold);font-size:30px;margin:0 0 30px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media (max-width:760px){.grid3{grid-template-columns:1fr}}
+.fcard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px}
+.fcard .ic{font-size:30px;margin-bottom:10px}
+.fcard h3{margin:0 0 6px;font-size:18px;color:var(--ink)}
+.fcard p{margin:0;color:var(--mute);font-size:14.5px;line-height:1.55}
+
+/* support + other games */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:30px 0 60px}
+@media (max-width:760px){.split{grid-template-columns:1fr}}
+.panel{background:linear-gradient(160deg,var(--card),#141a26);border:1px solid var(--line);border-radius:20px;padding:28px}
+.panel h3{margin:0 0 8px;font-size:21px;color:var(--ink);font-family:"Lilita One",sans-serif;font-weight:400}
+.panel p{color:var(--mute);margin:0 0 18px;font-size:14.5px;line-height:1.6}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:12px;font-weight:900;font-size:14.5px;text-decoration:none;border:1px solid transparent}
+.btn.coffee{background:#FFDD00;color:#2A1B00}
+.btn.coffee:hover{filter:brightness(1.06)}
+.other-game{display:flex;align-items:center;gap:14px;background:#0F1420;border:1px solid var(--line);border-radius:14px;padding:12px 14px;text-decoration:none;transition:border-color .15s}
+.other-game:hover{border-color:var(--gold)}
+.other-game img{width:52px;height:52px;border-radius:12px}
+.other-game .t strong{display:block;color:var(--ink);font-size:15px}
+.other-game .t span{color:var(--mute);font-size:12.5px}
+
+footer{border-top:1px solid var(--line);padding:26px 0 50px;color:var(--mute);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+footer a{color:var(--mute);text-decoration:underline}
+footer a:hover{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="bg-glow"></div>
+<div class="wrap">
+
+<nav>
+  <div class="brand"><img src="assets/icon.webp" alt="Castle Bop icon"><span class="display">Castle Bop</span></div>
+  <div class="links">
+    <a href="#screens">Screenshots</a>
+    <a href="#features">Features</a>
+    <a href="#support">Support</a>
+    <a href="privacy.html">Privacy</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div>
+    <div class="pill">⭐ <b>Free to play</b> — grab a soldier, fling it, save your castle</div>
+    <h1 class="display">Grab.<br>Fling.<br>Defend.</h1>
+    <p class="tag">One-tap tower-defense chaos. Snatch the enemy off the road, hurl them into traps, rivers and lava — and keep your castle standing through sixty gleefully brutal levels.</p>
+    <div class="cta-row">
+      <a class="appstore-badge" href="https://apps.apple.com/app/id6825538391" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="#fff"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.55C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.5 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.02.07-.42 1.44-1.38 2.82M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        <span class="t"><small>Download on the</small><strong>App Store</strong></span>
+      </a>
+    </div>
+  </div>
+  <div class="art"><img src="assets/logo.webp" alt="Castle Bop logo"></div>
+</section>
+
+<section class="showcase" id="screens">
+  <h2 class="display">See it in action</h2>
+  <p class="sub">Catapults, boiling oil, a lightning tower — and a courier who teleports.</p>
+  <div class="shots">
+    <img src="assets/shots/shot1.webp" alt="Castle Bop gameplay: soldiers marching on the castle">
+    <img src="assets/shots/shot2.webp" alt="Castle Bop combo streak">
+    <img src="assets/shots/shot3.webp" alt="Castle Bop weapons shop">
+    <img src="assets/shots/shot4.webp" alt="Castle Bop cosmetic skins">
+  </div>
+</section>
+
+<section class="features" id="features">
+  <h2 class="display">Why you'll keep coming back</h2>
+  <div class="grid3">
+    <div class="fcard"><div class="ic">👆</div><h3>One-finger chaos</h3><p>Grab, drag, fling — that's the whole language of the game. Easy to pick up, hard to put down once the waves get wild.</p></div>
+    <div class="fcard"><div class="ic">🏰</div><h3>60 levels, 6 biomes</h3><p>From the Green Valley to a lava volcano, every stretch brings new terrain, new enemy types and a boss at the end of the day.</p></div>
+    <div class="fcard"><div class="ic">⚡</div><h3>Weapons &amp; upgrades</h3><p>Catapults, boiling oil, a ballista and a lightning tower — mount them on your walls and unleash Ares when things get desperate.</p></div>
+    <div class="fcard"><div class="ic">🎭</div><h3>Full cosmetic sets</h3><p>Dress the whole battlefield — Veggie Army, Cactus Desert, Candy Shop and more, each with its own look for every soldier type.</p></div>
+    <div class="fcard"><div class="ic">👻</div><h3>Elusive enemies</h3><p>A teleporting courier who blinks out of sight, soldiers who shrug off an arrow and keep coming, a boss who gets angrier as he's hurt.</p></div>
+    <div class="fcard"><div class="ic">🌍</div><h3>Play in your language</h3><p>Fully available in English, Turkish, Spanish and French.</p></div>
+  </div>
+</section>
+
+<section class="split" id="support">
+  <div class="panel">
+    <h3>☕ Support the developer</h3>
+    <p>Castle Bop is made by one person in their spare time. If you're enjoying the chaos, a coffee goes a long way toward the next update.</p>
+    <a class="btn coffee" href="https://buymeacoffee.com/rakudigital" target="_blank" rel="noopener">☕ Buy me a coffee</a>
+  </div>
+  <div class="panel">
+    <h3>🎮 More games</h3>
+    <p>Another one-tap game from the same studio:</p>
+    <a class="other-game" href="https://apps.apple.com/app/id6814282702" target="_blank" rel="noopener">
+      <img src="https://oddestategame.vercel.app/apple-touch-icon.png" alt="Odd Estate icon" onerror="this.style.display='none'">
+      <div class="t"><strong>Odd Estate</strong><span>A strange real-estate adventure · App Store</span></div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 rakuappdigital. Castle Bop is not affiliated with Apple Inc.</span>
+  <span><a href="privacy.html">Privacy Policy</a></span>
+</footer>
+
+</div>
+</body>
+</html>
